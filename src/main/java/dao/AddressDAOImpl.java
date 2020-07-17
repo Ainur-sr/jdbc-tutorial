@@ -35,10 +35,10 @@ public class AddressDAOImpl implements AddressDAO {
         List<Address> addressList = new ArrayList<>();
         String slqQuerry = "SELECT * FROM ADDRESS";
 
-        try (Statement statement = UtilDB.getConnection().createStatement()){
+        try (Statement statement = UtilDB.getConnection().createStatement()) {
             ResultSet resultSet = statement.executeQuery(slqQuerry);
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Address address = new Address();
                 address.setId(resultSet.getLong("ID"));
                 address.setCountry(resultSet.getString("COUNTRY"));
@@ -64,7 +64,7 @@ public class AddressDAOImpl implements AddressDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             address = new Address();
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 address.setId(resultSet.getLong("ID"));
                 address.setCountry(resultSet.getString("COUNTRY"));
                 address.setCity(resultSet.getString("CITY"));
@@ -72,13 +72,10 @@ public class AddressDAOImpl implements AddressDAO {
                 address.setPostCode(resultSet.getString("POST_CODE"));
             }
         } catch (SQLException throwables) {
-        throwables.printStackTrace();
+            throwables.printStackTrace();
+        }
 
         return address;
-    }
-
-
-        return null;
     }
 
     @Override
@@ -89,6 +86,7 @@ public class AddressDAOImpl implements AddressDAO {
             preparedStatement.setString(2, address.getCity());
             preparedStatement.setString(3, address.getStreet());
             preparedStatement.setString(4, address.getPostCode());
+            preparedStatement.setString(5, address.getId().toString());
 
             preparedStatement.execute();
         } catch (SQLException throwables) {
