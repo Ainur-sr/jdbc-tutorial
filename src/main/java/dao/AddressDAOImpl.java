@@ -1,6 +1,6 @@
 package dao;
 
-import bl.UtilDB;
+import config.UtilDB;
 import entity.Address;
 
 import java.sql.PreparedStatement;
