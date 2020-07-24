@@ -14,9 +14,9 @@ public class AddressDAOImpl implements AddressDAO {
 
     @Override
     public void add(Address address) {
-        String slqQuerry = "INSERT INTO ADDRESS (ID, COUNTRY, CITY, STREET, POST_CODE) VALUES (?, ?, ?, ?, ?)";
+        String sqlQuery = "INSERT INTO ADDRESS (ID, COUNTRY, CITY, STREET, POST_CODE) VALUES (?, ?, ?, ?, ?)";
 
-        try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(slqQuerry)) {
+        try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(sqlQuery)) {
             preparedStatement.setLong(1, address.getId());
             preparedStatement.setString(2, address.getCountry());
             preparedStatement.setString(3, address.getCity());
@@ -33,10 +33,10 @@ public class AddressDAOImpl implements AddressDAO {
     @Override
     public List<Address> getAll() {
         List<Address> addressList = new ArrayList<>();
-        String slqQuerry = "SELECT * FROM ADDRESS";
+        String sqlQuery = "SELECT * FROM ADDRESS";
 
         try (Statement statement = UtilDB.getConnection().createStatement()) {
-            ResultSet resultSet = statement.executeQuery(slqQuerry);
+            ResultSet resultSet = statement.executeQuery(sqlQuery);
 
             while (resultSet.next()) {
                 Address address = new Address();
@@ -57,9 +57,9 @@ public class AddressDAOImpl implements AddressDAO {
 
     @Override
     public Address getById(Long id) {
-        String sqlQuerry = "SELECT * FROM ADDRESS WHERE ID=?";
+        String sqlQuery = "SELECT * FROM ADDRESS WHERE ID=?";
         Address address = null;
-        try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(sqlQuerry)) {
+        try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(sqlQuery)) {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -80,8 +80,8 @@ public class AddressDAOImpl implements AddressDAO {
 
     @Override
     public void update(Address address) {
-        String sqlQuerry = "UPDATE ADDRESS SET COUNTRY=?, CITY=?, STREET=?, POST_CODE=? WHERE ID=?";
-        try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(sqlQuerry)) {
+        String sqlQuery = "UPDATE ADDRESS SET COUNTRY=?, CITY=?, STREET=?, POST_CODE=? WHERE ID=?";
+        try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, address.getCountry());
             preparedStatement.setString(2, address.getCity());
             preparedStatement.setString(3, address.getStreet());
@@ -96,9 +96,9 @@ public class AddressDAOImpl implements AddressDAO {
 
     @Override
     public void remove(Address address) {
-        String sqlQuerry = "DELETE FROM ADDRESS WHERE ID=?";
+        String sqlQuery = "DELETE FROM ADDRESS WHERE ID=?";
 
-        try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(sqlQuerry)) {
+        try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(sqlQuery)) {
             preparedStatement.setLong(1, address.getId());
 
             preparedStatement.execute();

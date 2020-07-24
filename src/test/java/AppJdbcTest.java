@@ -75,6 +75,8 @@ public class AppJdbcTest {
         addressService.update(a);
 
         Address updatedAddress = addressService.getById(a.getId());
+        addressService.remove(a);
+
         assertEquals(updatedAddress.getStreet(), a.getStreet());
     }
 

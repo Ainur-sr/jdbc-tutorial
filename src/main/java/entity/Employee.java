@@ -3,7 +3,7 @@ package entity;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Emloyee {
+public class Employee {
 
     private Long id;
     private String firstName;
@@ -11,7 +11,7 @@ public class Emloyee {
     private Date birthDay;
     private Long addressId;
 
-    public Emloyee() {
+    public Employee() {
     }
 
     public Long getId() {
@@ -58,12 +58,12 @@ public class Emloyee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Emloyee emloyee = (Emloyee) o;
-        return Objects.equals(id, emloyee.id) &&
-                Objects.equals(firstName, emloyee.firstName) &&
-                Objects.equals(lastName, emloyee.lastName) &&
-                Objects.equals(birthDay, emloyee.birthDay) &&
-                Objects.equals(addressId, emloyee.addressId);
+        Employee employee = (Employee) o;
+        return Objects.equals(id, employee.id) &&
+                Objects.equals(firstName, employee.firstName) &&
+                Objects.equals(lastName, employee.lastName) &&
+                Objects.equals(birthDay, employee.birthDay) &&
+                Objects.equals(addressId, employee.addressId);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Emloyee {
 
     @Override
     public String toString() {
-        return "Emloyee{" +
+        return "Employee{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
