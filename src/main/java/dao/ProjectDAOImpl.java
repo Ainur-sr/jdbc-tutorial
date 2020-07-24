@@ -73,7 +73,6 @@ public class ProjectDAOImpl implements ProjectDAO {
         try (PreparedStatement preparedStatement = UtilDB.getConnection().prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, project.getTitle());
             preparedStatement.setLong(2, project.getId());
-
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
